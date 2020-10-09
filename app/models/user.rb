@@ -5,4 +5,6 @@ class User < ApplicationRecord
     #looks for association :auction in the Bid model to determine auctions
     #this user bid on
     has_many :bidded_auctions, through: :bids, source: :auction
+
+    has_secure_password
 end
