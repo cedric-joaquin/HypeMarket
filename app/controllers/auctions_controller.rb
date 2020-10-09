@@ -14,6 +14,8 @@ class AuctionsController < ApplicationController
     end
 
     def create
-
+        auction = Auction.create(item: params[:auction][:item], seller:current_user)
+        redirect_to auction
     end
+
 end
