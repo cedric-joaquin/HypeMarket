@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+    #signup form
     def new
+        logged_in_redirect
     end
 
+    #signup
     def create
         user = User.create(user_params)
         redirect_to user

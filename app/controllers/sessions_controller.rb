@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   #login form
   def new
-    redirect_to current_user if logged_in?
+    logged_in_redirect
   end
 
   #login
