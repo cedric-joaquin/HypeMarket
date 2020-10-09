@@ -1,0 +1,8 @@
+<h1><%= @auction.item %></h1>
+<h3><%= "Sold By #{@auction.seller.username}" %></h3>
+<h3>Current Bids:</h3>
+<ul>
+    <% @auction.bids.each do |bid| %>
+        <li><%= "$#{bid.bid} by" %> <%= link_to bid.bidder.username, bid.bidder %></li>
+    <% end %>
+</ul>

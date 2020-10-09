@@ -1,0 +1,6 @@
+<h1>Auctions</h1>
+<ul>
+    <% @auctions.each do |auction| %>
+        <li><%= link_to "#{auction.item} - #{auction.seller.username}", auction_path(auction) %></li>
+    <% end %>
+</ul>
