@@ -1,7 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to user_path(current_user) if logged_in?
   end
 
+  #login action
   def create
     user = User.find_by(username: params[:user][:username])
     return head(:forbidden) unless user.authenticate(params[:user][:password])
