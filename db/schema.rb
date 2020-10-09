@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_164111) do
+ActiveRecord::Schema.define(version: 2020_10_09_172315) do
 
   create_table "auctions", force: :cascade do |t|
     t.string "item"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "seller_id", null: false
+    t.index ["seller_id"], name: "index_auctions_on_seller_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -32,4 +34,6 @@ ActiveRecord::Schema.define(version: 2020_10_09_164111) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  # adds a seller_id foreign key from the users table
+  add_foreign_key "auctions", "users", column: "seller_id"
 end
