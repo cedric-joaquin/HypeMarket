@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   #login form
   def new
-    redirect_to user_path(current_user) if logged_in?
+    redirect_to current_user if logged_in?
   end
 
   #login
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:user][:username])
     return head(:forbidden) unless user.authenticate(params[:user][:password])
     session[:user_id] = user.id
-    redirect_to user_path(user)
+    redirect_to user
   end
 
   #logout
