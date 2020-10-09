@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
+  #login form
   def new
     redirect_to user_path(current_user) if logged_in?
   end
 
-  #login action
+  #login
   def create
     user = User.find_by(username: params[:user][:username])
     return head(:forbidden) unless user.authenticate(params[:user][:password])
@@ -11,6 +12,7 @@ class SessionsController < ApplicationController
     redirect_to user_path(user)
   end
 
+  #logout
   def destroy
     session.destroy
     redirect_to '/login'
