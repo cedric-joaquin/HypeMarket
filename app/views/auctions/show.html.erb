@@ -1,5 +1,8 @@
 <h1><%= @auction.item %></h1>
 <h3><%= "Sold By #{@auction.seller.username}" %></h3>
+<% if @auction.seller == current_user %>
+    <h3><%= link_to "Edit Item", edit_auction_path(@auction)%></h3>
+<% end %>
 <h3>Current Bids:</h3>
 <ul>
     <% @auction.bids.each do |bid| %>
