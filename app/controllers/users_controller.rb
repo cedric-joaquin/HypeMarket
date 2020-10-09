@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    
     #signup form
     def new
         logged_in_redirect
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
     end
 
     def show
+        require_login
         @user = User.find_by(id: session[:user_id])
     end
 
