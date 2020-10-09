@@ -8,9 +8,9 @@
     <%= link_to "Create an Auction", new_auction_path %>
 <% else %>
     <ul>
-        <%= @user.auctions.each do |auction| %>
-            <li><%=link_to auction.item, auction_path(auction) %></li>
-        <% end %>
+        <% @user.auctions.each do |auction| %>
+            <li><%= link_to auction.item, auction_path(auction) %></li>
+        <% end %> 
     </ul>
 <% end %>
 
@@ -19,7 +19,7 @@
     No available bids, <%= link_to "click here to browse auctions", auctions_path %>
 <% else %>
     <ul>
-        <%= @user.bidded_auctions.each do |auction| %>
+        <% @user.bidded_auctions.each do |auction| %>
             <%= link_to auction.item, auction_path(auction) %>
         <% end %>
     </ul>
