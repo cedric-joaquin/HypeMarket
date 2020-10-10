@@ -1,4 +1,7 @@
 <%= form_for @auction do |f| %>
-    <%= f.text_field :item, placeholder: "Item" %>
+    <%= f.text_field :item, placeholder: "Item" %><br>
+    <% if Auction.exists?(@auction.id) %>
+        <%= button_to "Delete Auction", auction_path(@auction), method: :delete %>
+    <% end %>
     <%= f.submit %>
 <% end %>
