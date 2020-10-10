@@ -15,6 +15,7 @@ class AuctionsController < ApplicationController
     end
 
     def edit
+        redirect_to auctions_path if !current_user.auctions.find_by(id: params[:id])
         @auction = Auction.find_by(id: params[:id])
     end
 
