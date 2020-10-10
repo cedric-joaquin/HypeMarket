@@ -1,6 +1,5 @@
 class AuctionsController < ApplicationController
-    before_action :require_login
-    skip_before_action :require_login, only: [:index, :show]
+    before_action :require_login, only: [:new, :edit, :destroy, :create]
 
     def index
         @auctions = Auction.all
