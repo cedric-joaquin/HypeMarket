@@ -19,6 +19,10 @@ class AuctionsController < ApplicationController
         @auction = Auction.find_by(id: params[:id])
     end
 
+    def destroy
+        redirect_to auctions_path if !current_user.auctions.find_by(id: params[:id])
+        Auction.find_by(id: params[:id]).destroy
+    end
 
     def create
         auction = Auction.create(item: params[:auction][:item], seller:current_user)
