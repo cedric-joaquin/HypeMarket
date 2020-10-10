@@ -1,5 +1,2 @@
 <h1>Create an Auction</h1>
-<%= form_for Auction.new do |f| %>
-    <%= f.text_field :item, placeholder: "Item" %>
-    <%= f.submit "Create Auction" %>
-<% end %>
+<%= render partial: 'form' %>

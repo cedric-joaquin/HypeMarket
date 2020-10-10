@@ -7,6 +7,7 @@ class AuctionsController < ApplicationController
     end
 
     def new
+        @auction = Auction.new
     end
 
     def show
@@ -14,7 +15,9 @@ class AuctionsController < ApplicationController
     end
 
     def edit
-        
+        @auction = Auction.find_by(id: params[:id])
+    end
+
 
     def create
         auction = Auction.create(item: params[:auction][:item], seller:current_user)
