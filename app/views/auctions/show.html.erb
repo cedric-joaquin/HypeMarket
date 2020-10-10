@@ -9,3 +9,8 @@
         <li><%= "$#{bid.bid} by" %> <%= link_to bid.bidder.username, bid.bidder %></li>
     <% end %>
 </ul>
+<h3>Place Bid:</h3>
+<%= form_for Bid.new do |f| %>
+    <%= f.number_field :bid, step: 1 %>
+    <%= f.submit %>
+<% end %>
