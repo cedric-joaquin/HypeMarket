@@ -6,10 +6,10 @@ class BidsController < ApplicationController
         redirect_to auction_path(bid.auction)
     end
 
-    def edit
-    end
-
     def update
+        bid = Bid.find_by(id: params[:id])
+        bid.update(bid: params[:bid][:bid])
+        redirect_to auction_path(bid.auction)
     end
     
     def destroy
