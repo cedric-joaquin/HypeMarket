@@ -1,35 +1,41 @@
 <h1><%= @auction.item %></h1>
 <h3><%= "Sold By #{@auction.seller.username}" %></h3>
+
 <% if @auction.seller == current_user %>
     <h3><%= link_to "Edit Item", edit_auction_path(@auction)%></h3>
 <% end %>
+
 <% if !@auction.bidders.empty? %>
-<h3>Highest Bid:</h3>
-<h4><%= "$#{@auction.bids.highest_bid} - #{@auction.bids.highest_bidder.username}" %></h4>
-<h3>Bid History:</h3>
-<ul>
-    <% @auction.bids.bid_history.each do |bid| %>
-        <li><%= "$#{bid.bid} by" %> <%= link_to bid.bidder.username, bid.bidder %></li>
-    <% end %>
-</ul>
-<% end %>
-<h3>Place Bid:</h3>
-<!-- form if current user has already bid on auction -->
-<% if @auction.bidders.include? current_user %>
-    <%= form_for @auction.bids.find_by(bidder: current_user) do |f| %>
-        <%= f.number_field :bid, step: 1, min: (@auction.bids.highest_bid + 1), placeholder: (@auction.bids.highest_bid + 1) %>
-        <%= f.submit %>
-        <%= f.fields_for @auction do |auction| %>
-            <%= auction.hidden_field :id %>
+    <h3>Highest Bid:</h3>
+    <h4><%= "$#{@auction.bids.highest_bid} - #{@auction.bids.highest_bidder.username}" %></h4>
+
+    <h3>Bid History:</h3>
+    <ul>
+        <% @auction.bids.bid_history.each do |bid| %>
+            <li><%= "$#{bid.bid} by" %> <%= link_to bid.bidder.username, bid.bidder %></li>
         <% end %>
-    <% end %>
-<!-- form if current user has not bid on auction -->
-<% else %>
-    <%= form_for Bid.new do |f| %>
-        <%= f.number_field :bid, step: 1 %>
-        <%= f.submit %>
-        <%= f.fields_for @auction do |auction| %>
-            <%= auction.hidden_field :id %>
+    </ul>
+<% end %>
+
+<% if !@auction.seller == current_user %>
+    <h3>Place Bid:</h3>
+    <!-- form if current user has already bid on auction -->
+    <% if @auction.bidders.include? current_user %>
+        <%= form_for @auction.bids.find_by(bidder: current_user) do |f| %>
+            <%= f.number_field :bid, step: 1, min: (@auction.bids.highest_bid + 1), placeholder: (@auction.bids.highest_bid + 1) %>
+            <%= f.submit %>
+            <%= f.fields_for @auction do |auction| %>
+                <%= auction.hidden_field :id %>
+            <% end %>
+        <% end %>
+    <!-- form if current user has not bid on auction -->
+    <% else %>
+        <%= form_for Bid.new do |f| %>
+            <%= f.number_field :bid, step: 1 %>
+            <%= f.submit %>
+            <%= f.fields_for @auction do |auction| %>
+                <%= auction.hidden_field :id %>
+            <% end %>
         <% end %>
     <% end %>
 <% end %>
