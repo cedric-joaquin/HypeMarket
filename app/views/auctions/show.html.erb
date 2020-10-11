@@ -12,10 +12,22 @@
     <% end %>
 </ul>
 <h3>Place Bid:</h3>
-<%= form_for Bid.new do |f| %>
-    <%= f.number_field :bid, step: 1, min: (@auction.bids.highest_bid + 1), placeholder: (@auction.bids.highest_bid + 1) %>
-    <%= f.submit %>
-    <%= f.fields_for @auction do |auction| %>
-        <%= auction.hidden_field :id %>
+<!-- form if current user has already bid on auction -->
+<% if @auction.bidders.include? current_user %>
+    <%= form_for @auction.bids.find_by(bidder: current_user) do |f| %>
+        <%= f.number_field :bid, step: 1, min: (@auction.bids.highest_bid + 1), placeholder: (@auction.bids.highest_bid + 1) %>
+        <%= f.submit %>
+        <%= f.fields_for @auction do |auction| %>
+            <%= auction.hidden_field :id %>
+        <% end %>
+    <% end %>
+<!-- form if current user has not bid on auction -->
+<% else %>
+    <%= form_for Bid.new do |f| %>
+        <%= f.number_field :bid, step: 1, min: (@auction.bids.highest_bid + 1), placeholder: (@auction.bids.highest_bid + 1) %>
+        <%= f.submit %>
+        <%= f.fields_for @auction do |auction| %>
+            <%= auction.hidden_field :id %>
+        <% end %>
     <% end %>
 <% end %>
