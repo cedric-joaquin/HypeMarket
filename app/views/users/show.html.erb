@@ -20,7 +20,7 @@
 <% else %>
     <ul>
         <% @user.bidded_auctions.each do |auction| %>
-            <%= link_to auction.item, auction_path(auction) %>
+            <li><%= link_to auction.item, auction_path(auction) %></li>
         <% end %>
     </ul>
 <% end %>
