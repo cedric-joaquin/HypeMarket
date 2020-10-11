@@ -3,5 +3,5 @@ class Bid < ApplicationRecord
     belongs_to :auction
 
     scope :bid_history, -> { (order("bid desc")) }
-    scope :highest_bid, -> { bid_history.limit(1) }
+    scope :highest_bid, -> { bid_history.limit(1).first }
 end

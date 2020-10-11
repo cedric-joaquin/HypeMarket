@@ -3,9 +3,11 @@
 <% if @auction.seller == current_user %>
     <h3><%= link_to "Edit Item", edit_auction_path(@auction)%></h3>
 <% end %>
-<h3>Current Bids:</h3>
+<h3>Highest Bid:</h3>
+<h4><%= "$#{@auction.bids.highest_bid.bid} - #{@auction.bids.highest_bid.bidder.username}" %></h4>
+<h3>Bid History:</h3>
 <ul>
-    <% @auction.bids.each do |bid| %>
+    <% @auction.bids.bid_history.each do |bid| %>
         <li><%= "$#{bid.bid} by" %> <%= link_to bid.bidder.username, bid.bidder %></li>
     <% end %>
 </ul>
@@ -13,4 +15,7 @@
 <%= form_for Bid.new do |f| %>
     <%= f.number_field :bid, step: 1 %>
     <%= f.submit %>
+    <%= f.fields_for @auction do |auction| %>
+        <%= auction.hidden_field :id %>
+    <% end %>
 <% end %>
