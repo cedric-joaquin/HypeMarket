@@ -3,7 +3,7 @@ class AuctionsController < ApplicationController
 
     def index
         if params[:user_id]
-            redirect_to user_path(current_user) if params[:user_id] != current_user.id
+            redirect_to user_path(current_user) if params[:user_id].to_i != current_user.id
             @auctions = User.find_by(id: params[:user_id]).auctions
         else
             @auctions = Auction.all
