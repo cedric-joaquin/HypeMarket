@@ -15,6 +15,7 @@ class AuctionsController < ApplicationController
     end
 
     def show
+        @bid = Bid.new
         @auction = Auction.find_by(id: params[:id])
     end
 
