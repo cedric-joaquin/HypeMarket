@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :bids
   resources :auctions
-  resources :users, only: [:show, :create]
+
+  resources :users, only: [:show, :create] do
+    resources :auctions
+  end
 
   get '/signup' => 'users#new'
 
