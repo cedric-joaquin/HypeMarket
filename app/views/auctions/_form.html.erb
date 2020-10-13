@@ -1,3 +1,14 @@
+<% if @auction.errors.any? %>
+    <div id="error_explanation">
+        <h2>The following error(s) occurred:</h2>
+        <ul>
+            <% @auction.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 <%= form_for @auction do |f| %>
     <%= f.text_field :item, placeholder: "Item" %><br>
     <% if Auction.exists?(@auction.id) %>
