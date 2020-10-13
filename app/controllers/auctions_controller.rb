@@ -2,7 +2,11 @@ class AuctionsController < ApplicationController
     before_action :require_login, only: [:new, :edit, :destroy, :create]
 
     def index
-        @auctions = Auction.all
+        if params[:user_id]
+            @auctions = User.find_by(id: params[:user_id]).auctions
+        else
+            @auctions = Auction.all
+        end
     end
 
     def new
