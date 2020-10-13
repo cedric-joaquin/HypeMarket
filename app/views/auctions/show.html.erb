@@ -17,8 +17,19 @@
     </ul>
 <% end %>
 
-<% if !@auction.seller == current_user %>
+<% if @auction.seller != current_user %>
     <h3>Place Bid:</h3>
+
+    <% if @bid.errors.any? %>
+    <div id="error_explanation">
+        <h2>The following error(s) occurred:</h2>
+        <ul>
+            <% @bid.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
     <!-- form if current user has already bid on auction -->
     <% if @auction.bidders.include? current_user %>
         <%= form_for @auction.bids.find_by(bidder: current_user) do |f| %>
@@ -30,7 +41,7 @@
         <% end %>
     <!-- form if current user has not bid on auction -->
     <% else %>
-        <%= form_for Bid.new do |f| %>
+        <%= form_for @bid do |f| %>
             <%= f.number_field :bid, step: 1 %>
             <%= f.submit %>
             <%= f.fields_for @auction do |auction| %>
