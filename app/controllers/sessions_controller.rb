@@ -5,9 +5,18 @@ class SessionsController < ApplicationController
   end
 
   #login
+
   def create
-    user = User.find_by(username: params[:user][:username])
-    return head(:forbidden) unless user.authenticate(params[:user][:password])
+    if params[:user]
+      user = User.find_by(username: params[:user][:username])
+      return head(:forbidden) unless user.authenticate(params[:user][:password])
+    else
+      user = User.find_or_create_by(email: auth['info']['email']) do |u|
+        u.username = auth['info']['email']
+        u.email = auth['info']['email']
+        u.save
+      end
+    end
     session[:user_id] = user.id
     redirect_to user
   end
@@ -16,5 +25,11 @@ class SessionsController < ApplicationController
   def destroy
     session.destroy
     redirect_to '/login'
+  end
+
+  private
+
+  def auth
+    request.env['omniauth.auth']
   end
 end
