@@ -14,5 +14,6 @@
     <%= f.text_field :email, placeholder: "Email" %><br>
     <%= f.password_field :password, placeholder: "Password" %><br>
     <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br>
-    <%= f.submit "Signup"%>
+    <%= f.submit "Signup"%><br>
+    <%= link_to "Click here to signup with Google", "/auth/google_oauth2"%>
 <% end %>

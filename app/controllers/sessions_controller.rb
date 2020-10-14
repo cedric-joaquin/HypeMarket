@@ -17,7 +17,6 @@ class SessionsController < ApplicationController
         u.password = auth['uid']
         u.save
       end
-      binding.pry
     end
     session[:user_id] = user.id
     redirect_to user
