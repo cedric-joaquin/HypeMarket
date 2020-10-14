@@ -1,4 +1,15 @@
-<%= form_for User.new do |f| %>
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+        <h2>Unable to signup. The following error(s) occurred:</h2>
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= form_for @user do |f| %>
     <%= f.text_field :username, placeholder: "Username" %><br>
     <%= f.text_field :email, placeholder: "Email" %><br>
     <%= f.password_field :password, placeholder: "Password" %><br>

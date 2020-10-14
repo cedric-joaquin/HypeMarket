@@ -12,10 +12,12 @@ class SessionsController < ApplicationController
       return head(:forbidden) unless user.authenticate(params[:user][:password])
     else
       user = User.find_or_create_by(email: auth['info']['email']) do |u|
-        u.username = auth['info']['email']
+        u.username = auth['info']['name']
         u.email = auth['info']['email']
+        u.password = auth['uid']
         u.save
       end
+      binding.pry
     end
     session[:user_id] = user.id
     redirect_to user
@@ -33,3 +35,4 @@ class SessionsController < ApplicationController
     request.env['omniauth.auth']
   end
 end
+

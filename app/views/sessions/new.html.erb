@@ -1,5 +1,6 @@
 <%= form_for :user do |f| %>
     <%= f.text_field :username, placeholder: "Username" %><br>
     <%= f.password_field :password, placeholder: "Password" %><br>
-    <%= f.submit "Login"%>
+    <%= f.submit "Login"%><br>
+    <%= link_to "Click here to login with Google", "/auth/google_oauth2" %>
 <% end %>
