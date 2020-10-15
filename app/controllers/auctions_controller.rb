@@ -45,7 +45,7 @@ class AuctionsController < ApplicationController
     def sold
         auction = Auction.find_by(id: params[:id])
         auction.update(sold: true)
-        auction.bids.highest_bid.winning_bid = true
+        auction.bids.highest_bid.update(winning_bid: true)
         redirect_to auction_path(auction)
     end
 

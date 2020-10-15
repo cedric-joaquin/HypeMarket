@@ -12,8 +12,6 @@
         <h3>Highest Bid:</h3>
         <h4><%= "$#{@auction.bids.highest_bid.bid} - #{@auction.bids.highest_bidder.username}" %></h4>
 
-            
-
         <% if @auction.seller == current_user && !@auction.sold %>
             <%= form_for @auction do |f| %>
                 <%= hidden_field_tag "sold", "true" %>

@@ -7,7 +7,8 @@ class Bid < ApplicationRecord
     scope :bid_history, -> { (order("bid desc")) }
     scope :highest_bid, -> { bid_history.limit(1).first }
     scope :highest_bidder, -> { highest_bid.bidder }
-    scope :group_by_auction, -> { select("auction_id").group("auction_id") }
+    scope :winning_bids, -> { where(winning_bid:true) }
+    scope :winning_bidder, -> { where(winning_bid:true).bidder }
     scope :most_bids, -> { find_by_sql("SELECT *
         FROM bids
         GROUP BY auction_id
