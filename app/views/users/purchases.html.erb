@@ -1,3 +1,6 @@
-<% current_user.bids.winning_bids.each do |bid| %>
-    <%= link_to "$#{bid.bid} - #{bid.auction.item}", auction_path(bid.auction) %>
-<% end %>
+<h1>Purchases:</h1>
+<ul>
+    <% @user.bids.winning_bids.each do |bid| %>
+        <li><%= link_to "$#{bid.bid} - #{bid.auction.item}", "yes" %></li>
+    <% end %>
+</ul>

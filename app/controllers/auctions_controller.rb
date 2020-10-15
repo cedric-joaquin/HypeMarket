@@ -36,7 +36,7 @@ class AuctionsController < ApplicationController
         @auction = Auction.new(item: params[:auction][:item], seller:current_user)
         if @auction.valid?
             @auction.save
-            redirect_to auction
+            redirect_to @auction
         else
             render :new
         end

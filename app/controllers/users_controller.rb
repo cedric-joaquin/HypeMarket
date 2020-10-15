@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     end
 
     def purchases
+        @user = User.find(params[:id])
     end
 
     private
