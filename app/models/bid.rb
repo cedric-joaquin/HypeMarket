@@ -5,8 +5,8 @@ class Bid < ApplicationRecord
     validates :bid, presence: true
 
     scope :bid_history, -> { (order("bid desc")) }
-    scope :highest_bid, -> { bid_history.limit(1).first.bid }
-    scope :highest_bidder, -> { bid_history.limit(1).first.bidder}
+    scope :highest_bid, -> { bid_history.limit(1).first }
+    scope :highest_bidder, -> { highest_bid.bidder }
     scope :group_by_auction, -> { select("auction_id").group("auction_id") }
     scope :most_bids, -> { find_by_sql("SELECT *
         FROM bids

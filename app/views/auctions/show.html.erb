@@ -1,13 +1,26 @@
 <h1><%= @auction.item %></h1>
 <h3><%= "Sold By #{@auction.seller.username}" %></h3>
 
-<% if @auction.seller == current_user %>
+<% if @auction.seller == current_user && !@auction.sold %>
     <%= button_to "Delete Auction", auction_path(@auction), method: :delete %>
 <% end %>
 
 <% if !@auction.bidders.empty? %>
-    <h3>Highest Bid:</h3>
-    <h4><%= "$#{@auction.bids.highest_bid} - #{@auction.bids.highest_bidder.username}" %></h4>
+    <% if @auction.sold %>
+        <h3>Item has been sold for $<%= @auction.bids.highest_bid.bid %></h3>
+    <% else %>
+        <h3>Highest Bid:</h3>
+        <h4><%= "$#{@auction.bids.highest_bid.bid} - #{@auction.bids.highest_bidder.username}" %></h4>
+
+            
+
+        <% if @auction.seller == current_user && !@auction.sold %>
+            <%= form_for @auction do |f| %>
+                <%= hidden_field_tag "sold", "true" %>
+                <%= f.submit "Accept Bid" %>
+            <% end %>
+        <% end %>
+    <% end %>
 
     <h3>Bid History:</h3>
     <ul>
@@ -17,7 +30,7 @@
     </ul>
 <% end %>
 
-<% if @auction.seller != current_user %>
+<% if @auction.seller != current_user && !@auction.sold %>
     <h3>Place Bid:</h3>
 
     <% if @bid.errors.any? %>
