@@ -23,6 +23,9 @@ class UsersController < ApplicationController
         @user = User.find_by(id: session[:user_id])
     end
 
+    def purchases
+    end
+
     private
 
     def user_params

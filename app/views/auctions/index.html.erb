@@ -1,5 +1,12 @@
 <h1>Auctions</h1>
-<h3><%= link_to "Create Auction", new_auction_path %></h3>
+
+<h3>
+    <% if params[:user_id] %>
+        <%= link_to "Create Auction", new_user_auction_path %>
+    <% else %>
+        <%= link_to "Create Auction", new_auction_path %>
+    <% end %>
+</h3>
 <ul>
     <% @auctions.each do |auction| %>
         <li><%= link_to "#{auction.item} - #{auction.seller.username}", auction_path(auction) %></li>
