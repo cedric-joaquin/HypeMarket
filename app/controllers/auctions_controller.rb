@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-    before_action :require_login, only: [:new, :edit, :destroy, :create]
+    before_action :require_login, only: [:new, :destroy, :create]
 
     def index
         if params[:user_id]
@@ -16,15 +16,6 @@ class AuctionsController < ApplicationController
 
     def show
         @bid = Bid.new
-        @auction = Auction.find_by(id: params[:id])
-    end
-
-    def edit
-        if params[:user_id]
-            redirect_to user_auctions_path if !current_user.auctions.find_by(id: params[:id])
-        else
-            redirect_to auctions_path if !current_user.auctions.find_by(id: params[:id])
-        end
         @auction = Auction.find_by(id: params[:id])
     end
 

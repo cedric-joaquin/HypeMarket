@@ -5,8 +5,4 @@ class Auction < ApplicationRecord
 
     validates :item, presence: true
     
-
-    scope :hottest_auction, -> { count("bid desc").limit(1) }
-    #Auction.joins(:bids).group(auction.id)
-    # SELECT * FROM auctions INNER JOIN bids ON bids.auction_id = auctions.id
 end

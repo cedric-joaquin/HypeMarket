@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :bids
-  resources :auctions
+  resources :auctions, except: [:edit, :update]
 
   resources :users, only: [:show, :create] do
-    resources :auctions
+    resources :auctions, except: [:edit, :update]
   end
 
   get '/signup' => 'users#new'
