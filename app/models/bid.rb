@@ -9,13 +9,14 @@ class Bid < ApplicationRecord
     scope :highest_bidder, -> { highest_bid.bidder }
     scope :winning_bids, -> { where(winning_bid:true) }
     scope :winning_bidder, -> { where(winning_bid:true).bidder }
-    scope :most_bids, -> { find_by_sql("SELECT *
-        FROM bids
-        GROUP BY auction_id
-        HAVING COUNT (auction_id)=(
-            SELECT MAX(bidCount)
-            FROM (  SELECT auction_id, COUNT(auction_id) bidCount
-                    FROM bids
-                    GROUP BY auction_id));")}
+    
+    # scope :most_bids, -> { find_by_sql("SELECT *
+    #     FROM bids
+    #     GROUP BY auction_id
+    #     HAVING COUNT (auction_id)=(
+    #         SELECT MAX(bidCount)
+    #         FROM (  SELECT auction_id, COUNT(auction_id) bidCount
+    #                 FROM bids
+    #                 GROUP BY auction_id));")}
 
 end

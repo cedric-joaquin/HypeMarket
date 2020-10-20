@@ -7,9 +7,44 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="nav navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0 pr-0" href="/">HypeMarket</a>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+          <div class="sidebar-sticky pt-3">
+
+            <ul class="nav flex-column">
+              <h1 class="sidebar-heading px-3 mt-1 mb-2">Welcome, <%= current_user.username %></h1>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Auctions", user_auctions_path(current_user), class:"nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Bids", user_auctions_path(current_user), class:"nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Purchases", user_purchases_path(current_user), class:"nav-link"%>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          <%= yield %>
+        </main>
+      </div>
+
+
+    </div>
   </body>
 </html>

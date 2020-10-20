@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_205559) do
+ActiveRecord::Schema.define(version: 2020_10_15_004541) do
 
   create_table "auctions", force: :cascade do |t|
     t.string "item"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "seller_id", null: false
+    t.boolean "sold"
     t.index ["seller_id"], name: "index_auctions_on_seller_id"
   end
 
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_10_09_205559) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "bidder_id", null: false
     t.integer "auction_id"
+    t.boolean "winning_bid"
     t.index ["bidder_id"], name: "index_bids_on_bidder_id"
   end
 

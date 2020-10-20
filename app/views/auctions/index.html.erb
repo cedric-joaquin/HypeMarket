@@ -7,8 +7,23 @@
         <%= link_to "Create Auction", new_auction_path %>
     <% end %>
 </h3>
-<ul>
-    <% @auctions.each do |auction| %>
-        <li><%= link_to "#{auction.item} - #{auction.seller.username}", auction_path(auction) %></li>
-    <% end %>
-</ul>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Seller</th>
+            <th scope="col">Highest Bid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @auctions.each do |auction| %>
+            <tr>
+                <td><%= link_to "#{auction.item}", auction_path(auction) %></td>
+                <td><%= link_to "#{auction.seller.username}", user_auctions_path(auction.seller) %></td>
+                <td><%= auction.bids.highest_bid %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+

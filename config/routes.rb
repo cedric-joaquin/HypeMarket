@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   post '/login' => "sessions#create"
   post '/logout' => "sessions#destroy"
 
-  get '/users/:id/purchases' => "users#purchases"
+  get '/users/:id/purchases' => "users#purchases", as: "user_purchases"
+  
 
   get '/auth/google_oauth2/callback' => 'sessions#create'
 
