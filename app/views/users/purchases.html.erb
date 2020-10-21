@@ -1,4 +1,4 @@
-<h1>Purchases:</h1>
+<h1>Purchases</h1>
 <ul>
     <% @user.bids.winning_bids.each do |bid| %>
         <li><%= link_to "$#{bid.bid} - #{bid.auction.item}", "yes" %></li>

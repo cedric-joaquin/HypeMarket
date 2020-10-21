@@ -24,10 +24,13 @@
             <ul class="nav flex-column">
               <h1 class="sidebar-heading px-3 mt-1 mb-2">Welcome, <%= current_user.username %></h1>
               <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <%= link_to "Dashboard", user_path(current_user), class:"nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "Auctions", user_auctions_path(current_user), class:"nav-link"%>
+                <%= link_to "All Auctions", auctions_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Active Auctions", user_auctions_path(current_user), class:"nav-link"%>
               </li>
               <li class="nav-item">
                 <%= link_to "Bids", user_auctions_path(current_user), class:"nav-link"%>
