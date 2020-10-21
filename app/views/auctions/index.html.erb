@@ -26,7 +26,13 @@
             <tr>
                 <td><%= link_to "#{auction.item}", auction_path(auction) %></td>
                 <td><%= link_to "#{auction.seller.username}", user_auctions_path(auction.seller) %></td>
-                <td><%= auction.bids.highest_bid %></td>
+                <td>
+                    <% if !auction.bids.empty? %>
+                        <%= "$#{auction.bids.highest_bid.bid}" %>
+                    <% else %>
+                        No bids
+                    <% end %>
+                </td>
             </tr>
         <% end %>
     </tbody>
