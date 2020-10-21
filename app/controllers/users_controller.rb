@@ -24,7 +24,11 @@ class UsersController < ApplicationController
     end
 
     def purchases
-        @user = User.find(params[:id])
+        @user = User.find_by(id: current_user.id)
+    end
+
+    def bids
+        @user = User.find_by(id: current_user.id)
     end
 
     private
