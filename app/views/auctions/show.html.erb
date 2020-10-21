@@ -32,7 +32,7 @@
             <tbody>
                 <% @auction.bids.bid_history.each do |bid| %>
                     <tr>
-                        <td><%= "#{bid.bid}"%></td>
+                        <td><%= "$#{bid.bid}"%></td>
                         <td><%= "#{bid.bidder.username}" %></td>
                     </tr>
                     <% end %>
