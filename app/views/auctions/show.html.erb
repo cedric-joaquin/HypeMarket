@@ -21,11 +21,23 @@
     <% end %>
 
     <h3>Bid History:</h3>
-    <ul>
-        <% @auction.bids.bid_history.each do |bid| %>
-            <li><%= "$#{bid.bid} by" %> <%= link_to bid.bidder.username, bid.bidder %></li>
-        <% end %>
-    </ul>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Bid Amount</th>
+                    <th scope="col">Bidder</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @auction.bids.bid_history.each do |bid| %>
+                    <tr>
+                        <td><%= "#{bid.bid}"%></td>
+                        <td><%= "#{bid.bidder.username}" %></td>
+                    </tr>
+                    <% end %>
+            </tbody>
+        </table>
 <% end %>
 
 <% if @auction.seller != current_user && !@auction.sold %>
