@@ -1,9 +1,8 @@
-<div class="row">
-    <h1><%= @auction.item %> - <%= "Sold By #{@auction.seller.username}" %></h1>
-    <% if @auction.seller == current_user && !@auction.sold %>
-        <%= button_to "Delete Auction", auction_path(@auction), method: :delete, class:"btn btn-info float-right" %>
-    <% end %>
-</div>
+<header class="navbar navbar-expand-md">
+    <h1><%= @auction.item %></h1><br>
+    <h2><%= "Sold By #{@auction.seller.username}" %></h2>
+
+</header>
 
 
 <% if !@auction.bidders.empty? %>
@@ -38,6 +37,9 @@
                     <% end %>
             </tbody>
         </table>
+        <% if @auction.seller == current_user && !@auction.sold %>
+            <%= button_to "Delete Auction", auction_path(@auction), method: :delete, class:"btn btn-info ml-auto" %>
+        <% end %>
 <% end %>
 
 <% if @auction.seller != current_user && !@auction.sold %>
@@ -53,6 +55,7 @@
         </ul>
     </div>
 <% end %>
+
     <!-- form if current user has already bid on auction -->
     <% if @auction.bidders.include? current_user %>
         <%= form_for @auction.bids.find_by(bidder: current_user) do |f| %>
