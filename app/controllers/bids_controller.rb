@@ -19,5 +19,6 @@ class BidsController < ApplicationController
     end
     
     def destroy
+        Bid.find_by(id:params[:id]).destroy
     end
 end

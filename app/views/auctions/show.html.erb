@@ -59,6 +59,7 @@
         <%= form_for @auction.bids.find_by(bidder: current_user) do |f| %>
             <%= f.number_field :bid, step: 1, min: (@auction.bids.highest_bid.bid + 1), placeholder: (@auction.bids.highest_bid.bid + 1) %>
             <%= f.submit %>
+            <%= button_to "Delete Bid", bid_path(f), method: :delete, class:"btn btn-info ml-auto" %>
             <%= f.fields_for @auction do |auction| %>
                 <%= auction.hidden_field :id %>
             <% end %>
