@@ -7,15 +7,21 @@ class BidsController < ApplicationController
             @bid.save
             redirect_to auction_path(@bid.auction)
         else
-            @auction = Auction.find_by(id:params[:bid][:auction][:id])
+            @auction = @bid.auction
             render "auctions/show"
         end
     end
 
     def update
-        bid = Bid.find_by(id: params[:id])
-        bid.update(bid: params[:bid][:bid])
-        redirect_to auction_path(bid.auction)
+        @bid = Bid.find_by(id: params[:id])
+        @bid.bid = params[:bid][:bid]
+        if @bid.valid?
+            @bid.save
+            redirect_to auction_path(@bid.auction)
+        else
+            @auction = @bid.auction
+            render "auctions/show"
+        end
     end
     
     def destroy

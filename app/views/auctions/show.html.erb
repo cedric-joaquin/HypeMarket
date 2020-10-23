@@ -57,13 +57,13 @@
     <!-- form if current user has already bid on auction -->
     <% if @auction.bidders.include? current_user %>
         <%= form_for @auction.bids.find_by(bidder: current_user) do |f| %>
-            <%= f.number_field :bid, step: 1, min: (@auction.bids.highest_bid.bid + 1), placeholder: (@auction.bids.highest_bid.bid + 1) %>
+            <%= f.number_field :bid, step: 1, placeholder: (@auction.bids.highest_bid.bid + 1) %>
             <%= f.submit %>
-            <%= button_to "Delete Bid", bid_path(f), method: :delete, class:"btn btn-info ml-auto" %>
             <%= f.fields_for @auction do |auction| %>
                 <%= auction.hidden_field :id %>
             <% end %>
         <% end %>
+        <%= button_to "Delete Bid", bid_path(@auction.bids.find_by(bidder: current_user)), method: :delete, class:"btn btn-info ml-auto" %>
     <!-- form if current user has not bid on auction -->
     <% else %>
         <%= form_for @bid do |f| %>
