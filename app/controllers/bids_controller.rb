@@ -19,6 +19,9 @@ class BidsController < ApplicationController
     end
     
     def destroy
-        Bid.find_by(id:params[:id]).destroy
+        bid = Bid.find_by(id: params[:id])
+        auction = bid.auction
+        bid.destroy if current_user.bids.find_by(id: bid.id)
+        redirect_to auction_path(auction)
     end
 end
