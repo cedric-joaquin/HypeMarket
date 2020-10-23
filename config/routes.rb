@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :bids
   resources :auctions, except: [:edit, :update]
+  root 'users#show'
   patch '/auctions/:id' => 'auctions#sold'
 
   resources :users, only: [:show, :create] do
