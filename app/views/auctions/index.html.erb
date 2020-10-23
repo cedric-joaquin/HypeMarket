@@ -1,8 +1,13 @@
 <header class="navbar navbar-expand-md">
         <% if params[:user_id] %>
-            <%= link_to "Create Auction", new_user_auction_path, class:"btn btn-info float-left" %>
+            <% if @user == current_user %>
+                <h1>Your Auctions</h1>
+                <%= link_to "Create Auction", new_user_auction_path, class:"btn btn-info float-right" %>
+            <% else %>
+                <h1><%= "#{@user.username}'s Auctions" %></h1>
+            <% end %>
         <% else %>
-            <%= link_to "Create Auction", new_auction_path, class:"btn btn-info float-left" %>
+                <%= link_to "Create Auction", new_auction_path, class:"btn btn-info float-left" %>
         <% end %>
 </header>
 
