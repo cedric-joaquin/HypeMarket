@@ -1,7 +1,5 @@
 <header class="navbar navbar-expand-md">
-    <h1><%= @auction.item %></h1><br>
-    <h2><%= "Sold By #{@auction.seller.username}" %></h2>
-
+    <h1><%= @auction.item %></h1>
 </header>
 
 
@@ -9,7 +7,7 @@
     <% if @auction.sold %>
         <h3>Item has been sold for $<%= @auction.bids.highest_bid.bid %></h3>
     <% else %>
-        <h3>Highest Bid:<%= "$#{@auction.bids.highest_bid.bid} - #{@auction.bids.highest_bidder.username}" %></h3>
+        <h3>Highest Bid: <%= "$#{@auction.bids.highest_bid.bid} - #{@auction.bids.highest_bidder.username}" %></h3>
 
         <% if @auction.seller == current_user && !@auction.sold %>
             <%= form_for @auction do |f| %>
