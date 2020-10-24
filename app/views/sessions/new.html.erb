@@ -1,6 +1,11 @@
-<%= form_for :user do |f| %>
-    <%= f.text_field :username, placeholder: "Username" %><br>
-    <%= f.password_field :password, placeholder: "Password" %><br>
-    <%= f.submit "Login"%><br>
-    <%= link_to "Click here to login with Google", "/auth/google_oauth2" %>
-<% end %>
+<div class="p-3">
+    <div class="form-group">
+        <%= form_for :user do |f| %>
+            <%= f.text_field :username, placeholder: "Username" %><br>
+            <%= f.password_field :password, placeholder: "Password" %><br>
+            <%= f.submit "Login"%><br>
+            <%= link_to "Click here to login with Google", "/auth/google_oauth2" %><br>
+            <%= link_to "Don't have an account? Click here to signup!", "/signup" %>
+        <% end %>
+    </div>
+</div>
