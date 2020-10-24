@@ -22,22 +22,31 @@
           <div class="sidebar-sticky pt-3">
 
             <ul class="nav flex-column">
-              <h1 class="sidebar-heading px-3 mt-1 mb-2">Welcome, <%= current_user.username %></h1>
-              <li class="nav-item">
-                <%= link_to "Dashboard", user_path(current_user), class:"nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "All Auctions", auctions_path, class:"nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Your Auctions", user_auctions_path(current_user), class:"nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Active Bids", user_bids_path(current_user), class:"nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Purchases", user_purchases_path(current_user), class:"nav-link"%>
-              </li>
+              <% if current_user %>
+                <h1 class="sidebar-heading px-3 mt-1 mb-2">Welcome, <%= current_user.username %></h1>
+                <li class="nav-item">
+                  <%= link_to "Dashboard", user_path(current_user), class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "All Auctions", auctions_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Your Auctions", user_auctions_path(current_user), class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Active Bids", user_bids_path(current_user), class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Purchases", user_purchases_path(current_user), class:"nav-link"%>
+                </li>
+              <% else %>
+                <li class="navi-tem">
+                  <%= link_to "Login", login_path, class: "nav-link" %>
+                </li>
+                <li class="navi-tem">
+                  <%= link_to "All Auctions", auctions_path, class:"nav-link"%>
+                </li>
+              <% end %>
             </ul>
           </div>
         </nav>
