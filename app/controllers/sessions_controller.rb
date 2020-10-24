@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
   end
 
   #login
-
   def create
     if params[:user]
       user = User.find_by(username: params[:user][:username])
@@ -30,6 +29,7 @@ class SessionsController < ApplicationController
 
   private
 
+  #google sign-in
   def auth
     request.env['omniauth.auth']
   end

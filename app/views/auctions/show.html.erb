@@ -63,7 +63,7 @@
                 <%= auction.hidden_field :id %>
             <% end %>
         <% end %>
-        <%= button_to "Delete Bid", bid_path(@auction.bids.find_by(bidder: current_user)), method: :delete, class:"btn btn-info ml-auto" %>
+        <br><%= button_to "Delete Bid", bid_path(@auction.bids.find_by(bidder: current_user)), method: :delete, class:"btn btn-info ml-auto" %>
     <!-- form if current user has not bid on auction -->
     <% else %>
         <%= form_for @bid do |f| %>
