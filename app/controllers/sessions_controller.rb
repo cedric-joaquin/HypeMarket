@@ -7,18 +7,23 @@ class SessionsController < ApplicationController
   #login
   def create
     if params[:user]
-      user = User.find_by(username: params[:user][:username])
-      return head(:forbidden) unless user.authenticate(params[:user][:password])
+      if user = User.find_by(username: params[:user][:username])
+        return head(:forbidden) unless user.authenticate(params[:user][:password])
+        session[:user_id] = user.id
+        redirect_to user
+      else
+        redirect_to '/login'
+      end
     else
       user = User.find_or_create_by(email: auth['info']['email']) do |u|
         u.username = auth['info']['name']
         u.email = auth['info']['email']
         u.password = auth['uid']
         u.save
+        session[:user_id] = user.id
+        redirect_to user
       end
     end
-    session[:user_id] = user.id
-    redirect_to user
   end
 
   #logout
