@@ -40,7 +40,7 @@
         <% end %>
 <% end %>
 
-<% if @auction.seller != current_user && !@auction.sold %>
+<% if @auction.seller != current_user && !@auction.sold && logged_in?%>
     <h3>Place Bid:</h3>
 
     <% if @bid.errors.any? %>
