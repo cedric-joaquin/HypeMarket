@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     
     #signup form
     def new
-        logged_in_redirect
+        redirect_to current_user if logged_in?
         @user = User.new
     end
 

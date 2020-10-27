@@ -2,7 +2,7 @@
     <h1><%= @auction.item %></h1>
 </header>
 
-
+<!-- Auction Info -->
 <% if !@auction.bidders.empty? %>
     <% if @auction.sold %>
         <h3>Item has been sold for $<%= @auction.bids.highest_bid.bid %></h3>
@@ -52,7 +52,7 @@
             <% end %>
         </ul>
     </div>
-<% end %>
+    <% end %>
 
     <!-- form if current user has already bid on auction -->
     <% if @auction.bidders.include? current_user %>

@@ -29,7 +29,6 @@ class AuctionsController < ApplicationController
             Auction.find_by(id: params[:id]).destroy
             redirect_to auctions_path
         end
-        #change this to users/:id/auctions once you set up nested routes
     end
 
     def create
