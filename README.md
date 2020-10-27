@@ -1,24 +1,5 @@
-# README
+# How To Install and Run HyperMarket
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To launch the app, fork and clone the repository. Then to start up the server simply type `rails s` in your terminal. Navigate to `localhost:3000` to find the app is running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+All dependencies are required in the Gemfile.
