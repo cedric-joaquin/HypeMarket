@@ -4,12 +4,11 @@ class SessionsController < ApplicationController
     logged_in_redirect
   end
 
-  #login
+  #POST login
   def create
     if params[:user]
       if user = User.find_by(username: params[:user][:username])
         return head(:forbidden) unless user.authenticate(params[:user][:password])
-        set_session(user)
       else
         redirect_to '/login'
         return
