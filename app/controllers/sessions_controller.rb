@@ -9,21 +9,21 @@ class SessionsController < ApplicationController
     if params[:user]
       if user = User.find_by(username: params[:user][:username])
         return head(:forbidden) unless user.authenticate(params[:user][:password])
-        session[:user_id] = user.id
-        redirect_to user
+        set_session(user)
       else
         redirect_to '/login'
+        return
       end
     else
       user = User.find_or_create_by(email: auth['info']['email']) do |u|
-        u.username = auth['info']['name']
+        u.username = auth['info']['email']
         u.email = auth['info']['email']
         u.password = auth['uid']
         u.save
-        session[:user_id] = user.id
-        redirect_to user
       end
     end
+    session[:user_id] = user.id
+    redirect_to user
   end
 
   #logout
